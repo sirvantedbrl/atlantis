@@ -167,7 +167,7 @@ const (
 	DefaultRedisTLSEnabled              = false
 	DefaultRedisInsecureSkipVerify      = false
 	DefaultTFDownloadURL                = "https://github.com/opentofu/opentofu/releases"
-	DefaultTFDownload                   = true
+	DefaultTFDownload                   = false
 	DefaultTFEHostname                  = "app.terraform.io"
 	DefaultVCSStatusName                = "atlantis"
 	DefaultWebBasicAuth                 = false
