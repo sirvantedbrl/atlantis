@@ -129,17 +129,20 @@ const (
 	RestrictFileList                 = "restrict-file-list"
 	TFDownloadFlag                   = "tf-download"
 	TFDownloadURLFlag                = "tf-download-url"
-	UseTFPluginCache                 = "use-tf-plugin-cache"
-	VarFileAllowlistFlag             = "var-file-allowlist"
-	VCSStatusName                    = "vcs-status-name"
-	TFEHostnameFlag                  = "tfe-hostname"
-	TFELocalExecutionModeFlag        = "tfe-local-execution-mode"
-	TFETokenFlag                     = "tfe-token"
-	WriteGitCredsFlag                = "write-git-creds" // nolint: gosec
-	WebBasicAuthFlag                 = "web-basic-auth"
-	WebUsernameFlag                  = "web-username"
-	WebPasswordFlag                  = "web-password"
-	WebsocketCheckOrigin             = "websocket-check-origin"
+	//opentofu flaglerini ekledim
+	OTDownloadFlag            = "opentofu-download"
+	OTDownloadURLFlag         = "opentofu-download-url"
+	UseTFPluginCache          = "use-tf-plugin-cache"
+	VarFileAllowlistFlag      = "var-file-allowlist"
+	VCSStatusName             = "vcs-status-name"
+	TFEHostnameFlag           = "tfe-hostname"
+	TFELocalExecutionModeFlag = "tfe-local-execution-mode"
+	TFETokenFlag              = "tfe-token"
+	WriteGitCredsFlag         = "write-git-creds" // nolint: gosec
+	WebBasicAuthFlag          = "web-basic-auth"
+	WebUsernameFlag           = "web-username"
+	WebPasswordFlag           = "web-password"
+	WebsocketCheckOrigin      = "websocket-check-origin"
 
 	// NOTE: Must manually set these as defaults in the setDefaults function.
 	DefaultADBasicUser                  = ""
@@ -166,13 +169,16 @@ const (
 	DefaultRedisPort                    = 6379
 	DefaultRedisTLSEnabled              = false
 	DefaultRedisInsecureSkipVerify      = false
-	DefaultTFDownloadURL                = "https://releases.hashicorp.com"
-	DefaultTFDownload                   = true
-	DefaultTFEHostname                  = "app.terraform.io"
-	DefaultVCSStatusName                = "atlantis"
-	DefaultWebBasicAuth                 = false
-	DefaultWebUsername                  = "atlantis"
-	DefaultWebPassword                  = "atlantis"
+	//opentofu urli ekledim
+	DefaultOTDownloadURL = "https://github.com/opentofu/opentofu/releases"
+	DefaultOTDownload    = false
+	DefaultTFDownloadURL = "https://releases.hashicorp.com"
+	DefaultTFDownload    = true
+	DefaultTFEHostname   = "app.terraform.io"
+	DefaultVCSStatusName = "atlantis"
+	DefaultWebBasicAuth  = false
+	DefaultWebUsername   = "atlantis"
+	DefaultWebPassword   = "atlantis"
 )
 
 var stringFlags = map[string]stringFlag{

@@ -102,6 +102,8 @@ type UserConfig struct {
 	RestrictFileList           bool            `mapstructure:"restrict-file-list"`
 	TFDownload                 bool            `mapstructure:"tf-download"`
 	TFDownloadURL              string          `mapstructure:"tf-download-url"`
+	OTDownload                 bool            `mapstructure:"opentofu-download"`
+	OTDownloadURL              string          `mapstructure:"opentofu-download-url"`
 	TFEHostname                string          `mapstructure:"tfe-hostname"`
 	TFELocalExecutionMode      bool            `mapstructure:"tfe-local-execution-mode"`
 	TFEToken                   string          `mapstructure:"tfe-token"`
