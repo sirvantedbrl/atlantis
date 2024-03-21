@@ -528,6 +528,7 @@ func MustConstraint(v string) version.Constraints {
 // ensureVersion returns the path to a terraform binary of version v.
 // It will download this version if we don't have it.
 func ensureVersion(log logging.SimpleLogging, dl Downloader, versions map[string]string, v *version.Version, binDir string, downloadURL string, downloadsAllowed bool) (string, error) {
+	log.Info("ensureVersion fonksiyonuna girildi") // Yeni eklenen log mesajı
 	if binPath, ok := versions[v.String()]; ok {
 		return binPath, nil
 	}
