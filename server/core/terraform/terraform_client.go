@@ -527,16 +527,25 @@ func MustConstraint(v string) version.Constraints {
 
 // ensureVersion returns the path to a terraform binary of version v.
 // It will download this version if we don't have it.
-func ensureVersion(log logging.SimpleLogging, dl Downloader, versions map[string]string, v *version.Version, binDir string, downloadURL string, downloadsAllowed bool) (string, error) {
+func ensureVersion(log logging.SimpleLogging, dl Downloader, versions map[string]string, v *version.Version, binDir string, downloadURL string, downloadsAllowed bool, tofuEnabled bool, tofuDownloadURL string, tofuFormatString string) (string, error) {
 	log.Info("ensureVersion fonksiyonuna girildi") // Yeni eklenen log mesajı
 	if binPath, ok := versions[v.String()]; ok {
 		return binPath, nil
 	}
-
 	// This tf version might not yet be in the versions map even though it
 	// exists on disk. This would happen if users have manually added
 	// terraform{version} binaries. In this case we don't want to re-download.
-	binFile := "terraform" + v.String()
+
+	// İlgili sürümün çalışabilir dosyasının adı oluşturulur ve mevcut PATH'te bulunup bulunmadığı kontrol edilir.
+	// Eğer bulunursa, versiyonun PATH'teki yolunu kaydedip döndürülür.
+
+	var binPrefix string
+	if tofuEnabled {
+		binPrefix = "tofu"
+	} else {
+		binPrefix = "terraform"
+	}
+	binFile := binPrefix + v.String()
 	if binPath, err := exec.LookPath(binFile); err == nil {
 		versions[v.String()] = binPath
 		return binPath, nil
@@ -549,20 +558,43 @@ func ensureVersion(log logging.SimpleLogging, dl Downloader, versions map[string
 		versions[v.String()] = dest
 		return dest, nil
 	}
+	//downloadAllowed false ise tofu veya terraform bulunamadı hatası
 	if !downloadsAllowed {
-		return "", fmt.Errorf("Could not find terraform version %s in PATH or %s, and downloads are disabled", v.String(), binDir)
+		var errorMessage string
+		if tofuEnabled {
+			errorMessage = fmt.Sprintf("Could not find tofu version %s in PATH or %s, and downloads are disabled", v.String(), binDir)
+		} else {
+			errorMessage = fmt.Sprintf("Could not find terraform version %s in PATH or %s, and downloads are disabled", v.String(), binDir)
+		}
+		return "", fmt.Errorf(errorMessage)
 	}
 
 	log.Info("Could not find terraform version %s in PATH or %s, downloading from %s", v.String(), binDir, downloadURL)
-	urlPrefix := fmt.Sprintf("%s/terraform/%s/terraform_%s", downloadURL, v.String(), v.String())
-	binURL := fmt.Sprintf("%s_%s_%s.zip", urlPrefix, runtime.GOOS, runtime.GOARCH)
-	checksumURL := fmt.Sprintf("%s_SHA256SUMS", urlPrefix)
-	fullSrcURL := fmt.Sprintf("%s?checksum=file:%s", binURL, checksumURL)
-	if err := dl.GetFile(dest, fullSrcURL); err != nil {
-		return "", errors.Wrapf(err, "downloading terraform version %s at %q", v.String(), fullSrcURL)
-	}
 
-	log.Info("Downloaded terraform %s to %s", v.String(), dest)
+	// Opentofu veya Terraform'un indirme URL'si ve dosya adı oluşturulur.
+	// Opentofu kullanılıyorsa, URL ve dosya adı "tofu" olarak başlar, aksi halde "terraform" olarak başlar.
+	// İndirme işlemi için kullanılacak tam URL oluşturulur.
+
+	var urlPrefix, binURL, checksumURL, fullSrcURL string
+	if tofuEnabled {
+		urlPrefix = fmt.Sprintf("%s/download/%s/tofu_%s", tofuDownloadURL, v.String(), v.String())
+		binURL = fmt.Sprintf("%s_%s_%s.zip", urlPrefix, runtime.GOOS, runtime.GOARCH)
+	} else {
+		urlPrefix = fmt.Sprintf("%s/terraform/%s/terraform_%s", downloadURL, v.String(), v.String())
+		binURL = fmt.Sprintf("%s_%s_%s.zip", urlPrefix, runtime.GOOS, runtime.GOARCH)
+	}
+	checksumURL = fmt.Sprintf("%s_SHA256SUMS", urlPrefix)
+	// son indirme url'i
+	fullSrcURL = fmt.Sprintf("%s?checksum=file:%s", binURL, checksumURL)
+
+	// Download the binary
+	if err := dl.GetFile(dest, fullSrcURL); err != nil {
+		return "", errors.Wrapf(err, "downloading %s version %s at %q", binPrefix, v.String(), fullSrcURL)
+	}
+	// v.String() sürüm numarası
+	//dest =hedef yolu
+	//dosya türü=tofu & terraform
+	log.Info("Downloaded %s %s to %s", binPrefix, v.String(), dest)
 	versions[v.String()] = dest
 	return dest, nil
 }
