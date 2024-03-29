@@ -122,6 +122,9 @@ func NewClientWithDefaultVersion(
 	tfDownloadURL string,
 	tfDownloader Downloader,
 	tfDownloadAllowed bool,
+	tofuEnabled bool,
+	tofuDownloadURL string,
+	tofuFormatString string,
 	usePluginCache bool,
 	fetchAsync bool,
 	projectCmdOutputHandler jobs.ProjectCommandOutputHandler,
@@ -158,7 +161,7 @@ func NewClientWithDefaultVersion(
 			// Since ensureVersion might end up downloading terraform,
 			// we call it asynchronously so as to not delay server startup.
 			versionsLock.Lock()
-			_, err := ensureVersion(log, tfDownloader, versions, defaultVersion, binDir, tfDownloadURL, tfDownloadAllowed)
+			_, err := ensureVersion(log, tfDownloader, versions, defaultVersion, binDir, tfDownloadURL, tfDownloadAllowed, tofuEnabled, tofuDownloadURL, tofuFormatStrin)
 			versionsLock.Unlock()
 			if err != nil {
 				log.Err("could not download terraform %s: %s", defaultVersion.String(), err)
@@ -189,6 +192,7 @@ func NewClientWithDefaultVersion(
 		downloader:              tfDownloader,
 		downloadBaseURL:         tfDownloadURL,
 		downloadAllowed:         tfDownloadAllowed,
+
 		versionsLock:            &versionsLock,
 		versions:                versions,
 		usePluginCache:          usePluginCache,
