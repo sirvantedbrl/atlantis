@@ -128,7 +128,11 @@ func TestNewClient_NoTF(t *testing.T) {
 	logger := logging.NewNoopLogger(t)
 	tmp, binDir, cacheDir := mkSubDirs(t)
 	projectCmdOutputHandler := jobmocks.NewMockProjectCommandOutputHandler()
-
+	// parametrelerin log mesajlarını bastiriyorum
+	t.Log("tmp:", tmp)
+	t.Log("binDir:", binDir)
+	t.Log("cacheDir:", cacheDir)
+	fmt.Println("tmp: ", tmp)
 	// Set PATH to only include our empty directory.
 	defer tempSetEnv(t, "PATH", tmp)()
 
@@ -239,6 +243,7 @@ func TestNewClient_DefaultTFFlagDownload(t *testing.T) {
 // Test that we get an error if the terraform version flag is malformed.
 func TestNewClient_BadVersion(t *testing.T) {
 	logger := logging.NewNoopLogger(t)
+
 	_, binDir, cacheDir := mkSubDirs(t)
 	projectCmdOutputHandler := jobmocks.NewMockProjectCommandOutputHandler()
 	_, err := terraform.NewClient(logger, binDir, cacheDir, "", "", "malformed", cmd.DefaultTFVersionFlag, cmd.DefaultTFDownloadURL, nil, true, true, projectCmdOutputHandler)

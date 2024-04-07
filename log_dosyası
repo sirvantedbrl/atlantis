@@ -1,0 +1,56 @@
+{"level":"debug","ts":"2024-03-30T21:02:46.343+0300","caller":"vcs/github_client.go:80","msg":"Creating new GitHub client for host: github.com","json":{}}
+{"level":"debug","ts":"2024-03-30T21:02:46.345+0300","caller":"vcs/github_client.go:104","msg":"GH User: sirvan","json":{}}
+{"level":"info","ts":"2024-03-30T21:02:46.434+0300","caller":"server/server.go:445","msg":"Utilizing BoltDB","json":{}}
+{"level":"info","ts":"2024-03-30T21:02:46.444+0300","caller":"policy/conftest_client.go:153","msg":"failed to get default conftest version. Will attempt request scoped lazy loads DEFAULT_CONFTEST_VERSION not set","json":{}}
+{"level":"info","ts":"2024-03-30T21:02:46.445+0300","caller":"server/server.go:990","msg":"Atlantis started - listening on port 4141","json":{}}
+{"level":"info","ts":"2024-03-30T21:02:46.446+0300","caller":"scheduled/executor_service.go:51","msg":"Scheduled Executor Service started","json":{}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.gc.pause_total","value":557581,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.gc.count","value":4,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.gc.sys","value":3315512,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.gc.next","value":7282992,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.gc.last","value":1711821766341416000,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.lookups","value":0,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.malloc","value":58843,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.frees","value":35754,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.othersys","value":1775012,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.alloc","value":4754768,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.total","value":9453376,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.sys","value":13650960,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.cpu.goroutines","value":7,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.cpu.cgo_calls","value":1,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.348+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.heap.idle","value":1073152,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.349+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.heap.inuse","value":6692864,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.349+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.heap.released","value":548864,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.349+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.heap.objects","value":23089,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.349+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.heap.alloc","value":4754768,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.349+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.heap.sys","value":7766016,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.349+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.stack.inuse","value":622592,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.349+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.stack.sys","value":146880,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.349+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.stack.mspan_inuse","value":146880,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.349+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.stack.mcache_inuse","value":9600,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:02:57.349+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.stack.mcache_sys","value":15600,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.gc.sys","value":3315512,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.gc.next","value":7282992,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.gc.last","value":1711821766341416000,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.gc.pause_total","value":557581,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.gc.count","value":4,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.alloc","value":4860080,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.total","value":9558688,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.sys","value":13650960,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.lookups","value":0,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.malloc","value":59621,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.frees","value":35766,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.othersys","value":1775012,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.cpu.goroutines","value":7,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.cpu.cgo_calls","value":1,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.heap.inuse","value":6742016,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.heap.released","value":548864,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.heap.objects","value":23855,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.heap.alloc","value":4860080,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.heap.sys","value":7766016,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.heap.idle","value":1024000,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.stack.mcache_inuse","value":9600,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.stack.mcache_sys","value":15600,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.stack.inuse","value":622592,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.stack.sys","value":146880,"tags":{},"type":"gauge"}}
+{"level":"debug","ts":"2024-03-30T21:03:07.345+0300","caller":"metrics/debug.go:47","msg":"gauge","json":{"name":"atlantis.scheduled.runtime.memory.stack.mspan_inuse","value":146880,"tags":{},"type":"gauge"}}

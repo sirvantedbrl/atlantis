@@ -70,6 +70,14 @@ type DefaultClient struct {
 	defaultVersion *version.Version
 	// We will run terraform with the TF_PLUGIN_CACHE_DIR env var set to this
 	// directory inside our data dir.
+
+	// tofuEnabled determines whether OpenTofu is enabled or not.
+
+	tofuEnabled bool
+
+	// tofuDownloadURL is the base URL for downloading OpenTofu versions.
+	tofuDownloadURL string
+
 	terraformPluginCacheDir string
 	binDir                  string
 	// overrideTF can be used to override the terraform binary during testing
@@ -79,6 +87,7 @@ type DefaultClient struct {
 	downloader      Downloader
 	downloadBaseURL string
 	downloadAllowed bool
+
 	// versions maps from the string representation of a tf version (ex. 0.11.10)
 	// to the absolute path of that binary on disk (if it exists).
 	// Use versionsLock to control access.
@@ -124,7 +133,6 @@ func NewClientWithDefaultVersion(
 	tfDownloadAllowed bool,
 	tofuEnabled bool,
 	tofuDownloadURL string,
-	tofuFormatString string,
 	usePluginCache bool,
 	fetchAsync bool,
 	projectCmdOutputHandler jobs.ProjectCommandOutputHandler,
@@ -161,7 +169,7 @@ func NewClientWithDefaultVersion(
 			// Since ensureVersion might end up downloading terraform,
 			// we call it asynchronously so as to not delay server startup.
 			versionsLock.Lock()
-			_, err := ensureVersion(log, tfDownloader, versions, defaultVersion, binDir, tfDownloadURL, tfDownloadAllowed, tofuEnabled, tofuDownloadURL, tofuFormatStrin)
+			_, err := ensureVersion(log, tfDownloader, versions, defaultVersion, binDir, tfDownloadURL, tfDownloadAllowed, tofuEnabled, tofuDownloadURL)
 			versionsLock.Unlock()
 			if err != nil {
 				log.Err("could not download terraform %s: %s", defaultVersion.String(), err)
@@ -212,6 +220,8 @@ func NewTestClient(
 	tfDownloadURL string,
 	tfDownloader Downloader,
 	tfDownloadAllowed bool,
+	tofuEnabled bool,
+	tofuDownloadURL string,
 	usePluginCache bool,
 	projectCmdOutputHandler jobs.ProjectCommandOutputHandler,
 ) (*DefaultClient, error) {
@@ -226,6 +236,8 @@ func NewTestClient(
 		tfDownloadURL,
 		tfDownloader,
 		tfDownloadAllowed,
+		tofuEnabled,
+		tofuDownloadURL,
 		usePluginCache,
 		false,
 		projectCmdOutputHandler,
@@ -251,6 +263,8 @@ func NewClient(
 	tfDownloadURL string,
 	tfDownloader Downloader,
 	tfDownloadAllowed bool,
+	tofuEnabled bool,
+	tofuDownloadURL string,
 	usePluginCache bool,
 	projectCmdOutputHandler jobs.ProjectCommandOutputHandler,
 ) (*DefaultClient, error) {
@@ -265,6 +279,8 @@ func NewClient(
 		tfDownloadURL,
 		tfDownloader,
 		tfDownloadAllowed,
+		tofuEnabled,
+		tofuDownloadURL,
 		usePluginCache,
 		true,
 		projectCmdOutputHandler,
@@ -380,7 +396,7 @@ func (c *DefaultClient) EnsureVersion(log logging.SimpleLogging, v *version.Vers
 
 	var err error
 	c.versionsLock.Lock()
-	_, err = ensureVersion(log, c.downloader, c.versions, v, c.binDir, c.downloadBaseURL, c.downloadAllowed)
+	_, err = ensureVersion(log, c.downloader, c.versions, v, c.binDir, c.downloadBaseURL, c.downloadAllowed, c.tofuEnabled, c.tofuDownloadURL)
 	c.versionsLock.Unlock()
 	if err != nil {
 		return err
@@ -460,7 +476,7 @@ func (c *DefaultClient) prepCmd(log logging.SimpleLogging, v *version.Version, w
 	} else {
 		var err error
 		c.versionsLock.Lock()
-		binPath, err = ensureVersion(log, c.downloader, c.versions, v, c.binDir, c.downloadBaseURL, c.downloadAllowed)
+		binPath, err = ensureVersion(log, c.downloader, c.versions, v, c.binDir, c.downloadBaseURL, c.downloadAllowed, c.tofuEnabled, c.tofuDownloadURL)
 		c.versionsLock.Unlock()
 		if err != nil {
 			return "", nil, err
@@ -531,7 +547,7 @@ func MustConstraint(v string) version.Constraints {
 
 // ensureVersion returns the path to a terraform binary of version v.
 // It will download this version if we don't have it.
-func ensureVersion(log logging.SimpleLogging, dl Downloader, versions map[string]string, v *version.Version, binDir string, downloadURL string, downloadsAllowed bool, tofuEnabled bool, tofuDownloadURL string, tofuFormatString string) (string, error) {
+func ensureVersion(log logging.SimpleLogging, dl Downloader, versions map[string]string, v *version.Version, binDir string, downloadURL string, downloadsAllowed bool, tofuEnabled bool, tofuDownloadURL string) (string, error) {
 	log.Info("ensureVersion fonksiyonuna girildi") // Yeni eklenen log mesajı
 	if binPath, ok := versions[v.String()]; ok {
 		return binPath, nil
